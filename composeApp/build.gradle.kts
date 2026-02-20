@@ -8,7 +8,8 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
-    id("app.cash.sqldelight")
+    alias(libs.plugins.sqldelight)
+    alias(libs.plugins.ktlint)
 }
 
 kotlin {
@@ -17,30 +18,30 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_17)
         }
     }
-    
+
     listOf(
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
         }
     }
-    
+
     jvm()
-    
+
     js {
         browser()
         binaries.executable()
     }
-    
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
         binaries.executable()
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
@@ -58,9 +59,7 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-
-            // SQLDelight
-            implementation("app.cash.sqldelight:runtime:2.2.1")
+            implementation(libs.sqldelight.runtime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -79,12 +78,21 @@ kotlin {
 
 android {
     namespace = "com.dev.healthreminder"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk =
+        libs.versions.android.compileSdk
+            .get()
+            .toInt()
 
     defaultConfig {
         applicationId = "com.dev.healthreminder"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        minSdk =
+            libs.versions.android.minSdk
+                .get()
+                .toInt()
+        targetSdk =
+            libs.versions.android.targetSdk
+                .get()
+                .toInt()
         versionCode = 1
         versionName = "1.0"
     }
@@ -125,5 +133,16 @@ sqldelight {
         create("AppDatabase") {
             packageName.set("com.dev.healthreminder.db")
         }
+    }
+}
+
+ktlint {
+    verbose.set(true)
+    outputToConsole.set(true)
+    coloredOutput.set(true)
+
+    filter {
+        exclude("**/build/generated/**")
+        exclude { element -> element.file.path.contains("resourceGenerator") }
     }
 }
