@@ -48,7 +48,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
 
             // SQLDelight
-            implementation("app.cash.sqldelight:android-driver:2.2.1")
+            implementation(libs.sqldelight.androidDriver)
         }
         commonMain {
             dependencies {
@@ -62,7 +62,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtimeCompose)
                 implementation(libs.sqldelight.runtime)
 
-                implementation("app.cash.sqldelight:coroutines-extensions:2.2.1")
+                implementation(libs.sqldelight.coroutinesExtensions)
             }
             kotlin.srcDirs(
                 "build/generated/sqldelight/code/HealthReminderDatabase/commonMain",
@@ -77,18 +77,18 @@ kotlin {
                 implementation(compose.desktop.currentOs)
                 implementation(libs.kotlinx.coroutinesSwing)
 
-                implementation("app.cash.sqldelight:sqlite-driver:2.2.1")
+                implementation(libs.sqldelight.sqliteDriver)
             }
         }
         nativeMain.dependencies {
-            implementation("app.cash.sqldelight:native-driver:2.2.1")
+            implementation(libs.sqldelight.nativeDriver)
         }
         iosMain.dependencies {
-            implementation("app.cash.sqldelight:native-driver:2.2.1")
+            implementation(libs.sqldelight.nativeDriver)
         }
         webMain.dependencies {
-            implementation("app.cash.sqldelight:web-worker-driver:2.2.1")
-            implementation("app.cash.sqldelight:coroutines-extensions:2.2.1")
+            implementation(libs.sqldelight.webWorkerDriver)
+            implementation(libs.sqldelight.coroutinesExtensions)
             implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.2.1"))
             implementation(npm("sql.js", "1.8.0"))
         }
