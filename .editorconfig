@@ -1,0 +1,5 @@
+[composeApp/src/**/*.kt]
+ktlint_function_naming_ignore_when_annotated_with=Composable,Preview
+
+[composeApp/src/iosMain/**/*.kt]
+ktlint_standard_function-naming = disabled
