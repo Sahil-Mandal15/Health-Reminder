@@ -5,6 +5,7 @@ import app.cash.sqldelight.async.coroutines.synchronous
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.dev.healthreminder.database.HealthReminderDatabase
+import com.dev.healthreminder.utils.LOCAL_DB_NAME
 
 actual class DatabaseDriverFactory(
     private val context: Context,
@@ -13,6 +14,6 @@ actual class DatabaseDriverFactory(
         AndroidSqliteDriver(
             schema = HealthReminderDatabase.Schema.synchronous(),
             context = context,
-            name = "health_reminder.db",
+            name = LOCAL_DB_NAME,
         )
 }
