@@ -35,9 +35,9 @@ object PlatformActivityProvider : Application.ActivityLifecycleCallbacks {
         bundle: Bundle,
     ) {}
 
-    override fun onActivityStopped(activity: Activity) {}
-
-    override fun onActivityDestroyed(activity: Activity) {
+    override fun onActivityStopped(activity: Activity) {
         currentActivity = null
     }
+
+    override fun onActivityDestroyed(activity: Activity) {}
 }
