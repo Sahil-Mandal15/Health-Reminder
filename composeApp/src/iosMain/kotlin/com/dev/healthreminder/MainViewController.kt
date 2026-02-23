@@ -5,11 +5,11 @@ import com.dev.healthreminder.di.initKoin
 import com.dev.healthreminder.presentation.ui.App
 import platform.UIKit.UIViewController
 
-fun MainViewController(): UIViewController = ComposeUIViewController(
-    configure = {
-        initKoin()
+fun MainViewController(): UIViewController =
+    ComposeUIViewController(
+        configure = {
+            initKoin()
+        },
+    ) {
+        App()
     }
-) {
-    App()
-}
-

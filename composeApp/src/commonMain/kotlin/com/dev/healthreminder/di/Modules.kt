@@ -5,6 +5,7 @@ import org.koin.dsl.module
 
 expect val platformModule: Module
 
-val sharedModule = module {
-    // TODO: add dependencies here ...
-}
+val sharedModule =
+    module {
+        // TODO: add dependencies here ...
+    }
