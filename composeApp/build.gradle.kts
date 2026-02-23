@@ -49,6 +49,7 @@ kotlin {
 
             // SQLDelight
             implementation(libs.sqldelight.androidDriver)
+            implementation(libs.koin.android)
         }
         commonMain {
             dependencies {
@@ -63,6 +64,10 @@ kotlin {
                 implementation(libs.sqldelight.runtime)
 
                 implementation(libs.sqldelight.coroutinesExtensions)
+
+                api(libs.koin.core)
+                implementation(libs.koin.compose)
+                implementation(libs.koin.compose.viewmodel)
             }
             kotlin.srcDirs(
                 "build/generated/sqldelight/code/HealthReminderDatabase/commonMain",
