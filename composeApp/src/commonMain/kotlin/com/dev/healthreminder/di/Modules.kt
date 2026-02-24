@@ -7,5 +7,4 @@ expect val platformModule: Module
 
 val sharedModule =
     module {
-        // TODO: add dependencies here ...
     }
