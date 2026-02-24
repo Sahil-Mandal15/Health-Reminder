@@ -7,26 +7,27 @@ import androidx.work.WorkManager
 import java.util.concurrent.TimeUnit
 
 internal class ReminderWorker(
-    private val context: Context
+    private val context: Context,
 ) : ReminderService {
-
     override fun start(intervalInMillis: Long) {
         val request =
             PeriodicWorkRequestBuilder<ReminderTriggerWorker>(
                 intervalInMillis,
-                TimeUnit.MILLISECONDS
+                TimeUnit.MILLISECONDS,
             ).build()
 
-        WorkManager.getInstance(context)
+        WorkManager
+            .getInstance(context)
             .enqueueUniquePeriodicWork(
                 REMINDER_NAME,
                 ExistingPeriodicWorkPolicy.UPDATE,
-                request
+                request,
             )
     }
 
     override fun stop() {
-        WorkManager.getInstance(context)
+        WorkManager
+            .getInstance(context)
             .cancelUniqueWork(REMINDER_NAME)
     }
 }
