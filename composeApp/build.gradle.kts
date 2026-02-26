@@ -1,5 +1,4 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -31,47 +30,55 @@ kotlin {
 
     jvm()
 
-    js {
-        browser()
-        binaries.executable()
-    }
-
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        binaries.executable()
-    }
-
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
 
             // SQLDelight
-            implementation("app.cash.sqldelight:android-driver:2.2.1")
+            implementation(libs.sqldelight.androidDriver)
+            implementation(libs.koin.android)
+            implementation(libs.androidx.work.manager)
         }
-        commonMain.dependencies {
-            implementation(libs.compose.runtime)
-            implementation(libs.compose.foundation)
-            implementation(libs.compose.material3)
-            implementation(libs.compose.ui)
-            implementation(libs.compose.components.resources)
-            implementation(libs.compose.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodelCompose)
-            implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation(libs.sqldelight.runtime)
+        commonMain {
+            dependencies {
+                implementation(libs.compose.runtime)
+                implementation(libs.compose.foundation)
+                implementation(libs.compose.material3)
+                implementation(libs.compose.ui)
+                implementation(libs.compose.components.resources)
+                implementation(libs.compose.uiToolingPreview)
+                implementation(libs.androidx.lifecycle.viewmodelCompose)
+                implementation(libs.androidx.lifecycle.runtimeCompose)
+                implementation(libs.sqldelight.runtime)
+
+                implementation(libs.sqldelight.coroutinesExtensions)
+
+                api(libs.koin.core)
+                implementation(libs.koin.compose)
+                implementation(libs.koin.compose.viewmodel)
+            }
+            kotlin.srcDirs(
+                "build/generated/sqldelight/code/HealthReminderDatabase/commonMain",
+            )
         }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-        jvmMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutinesSwing)
+        jvmMain {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+                implementation(libs.kotlinx.coroutinesSwing)
 
-            implementation("app.cash.sqldelight:sqlite-driver:2.2.1")
+                implementation(libs.sqldelight.sqliteDriver)
+            }
         }
         nativeMain.dependencies {
-            implementation("app.cash.sqldelight:native-driver:2.2.1")
+            implementation(libs.sqldelight.nativeDriver)
+        }
+        iosMain.dependencies {
+            implementation(libs.sqldelight.nativeDriver)
         }
     }
 }
@@ -130,8 +137,10 @@ compose.desktop {
 
 sqldelight {
     databases {
-        create("AppDatabase") {
-            packageName.set("com.dev.healthreminder.db")
+        create("HealthReminderDatabase") {
+            packageName.set("com.dev.healthreminder.database")
+            srcDirs.setFrom("src/commonMain/sqldelight")
+            generateAsync.set(true)
         }
     }
 }
@@ -143,6 +152,10 @@ ktlint {
 
     filter {
         exclude("**/build/generated/**")
+        exclude("com.dev.healthreminder.database")
         exclude { element -> element.file.path.contains("resourceGenerator") }
+        exclude { entry ->
+            entry.file.toString().contains("generated")
+        }
     }
 }
