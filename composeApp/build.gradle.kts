@@ -30,10 +30,10 @@ kotlin {
 
     jvm()
 
-    js {
-        browser()
-        binaries.executable()
-    }
+//    js {
+//        browser()
+//        binaries.executable()
+//    }
 
     // Removed due to compatibility issues by Sahil-Mandal15
 //    @OptIn(ExperimentalWasmDsl::class)
@@ -92,12 +92,12 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.sqldelight.nativeDriver)
         }
-        webMain.dependencies {
-            implementation(libs.sqldelight.webWorkerDriver)
-            implementation(libs.sqldelight.coroutinesExtensions)
-            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.2.1"))
-            implementation(npm("sql.js", "1.8.0"))
-        }
+//        webMain.dependencies {
+//            implementation(libs.sqldelight.webWorkerDriver)
+//            implementation(libs.sqldelight.coroutinesExtensions)
+//            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.2.1"))
+//            implementation(npm("sql.js", "1.8.0"))
+//        }
     }
 }
 
