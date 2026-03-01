@@ -7,8 +7,7 @@ import com.dev.healthreminder.presentation.ui.theming.AppTheme
 
 @Composable
 fun IntervalListView() {
-    LazyRow() {
-
+    LazyRow {
     }
 }
 

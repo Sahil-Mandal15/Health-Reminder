@@ -15,14 +15,14 @@ fun LargeText(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
-    fontWeight: FontWeight = FontWeight.Normal
+    fontWeight: FontWeight = FontWeight.Normal,
 ) {
     Text(
         text = text,
         modifier = modifier,
         color = color,
         fontSize = FontLarge,
-        fontWeight = fontWeight
+        fontWeight = fontWeight,
     )
 }
 
@@ -31,14 +31,14 @@ fun MediumText(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
-    fontWeight: FontWeight = FontWeight.Normal
+    fontWeight: FontWeight = FontWeight.Normal,
 ) {
     Text(
         text = text,
         modifier = modifier,
         color = color,
         fontSize = FontMedium,
-        fontWeight = fontWeight
+        fontWeight = fontWeight,
     )
 }
 
@@ -47,14 +47,14 @@ fun SmallText(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
-    fontWeight: FontWeight = FontWeight.Normal
+    fontWeight: FontWeight = FontWeight.Normal,
 ) {
     Text(
         text = text,
         modifier = modifier,
         color = color,
         fontSize = FontSmall,
-        fontWeight = fontWeight
+        fontWeight = fontWeight,
     )
 }
 
@@ -63,13 +63,13 @@ fun SmallestText(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
-    fontWeight: FontWeight = FontWeight.Normal
+    fontWeight: FontWeight = FontWeight.Normal,
 ) {
     Text(
         text = text,
         modifier = modifier,
         color = color,
         fontSize = FontSmallest,
-        fontWeight = fontWeight
+        fontWeight = fontWeight,
     )
 }

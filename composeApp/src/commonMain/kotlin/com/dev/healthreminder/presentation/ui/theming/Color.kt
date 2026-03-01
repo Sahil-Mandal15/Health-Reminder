@@ -13,26 +13,28 @@ val DarkSurface = Color(0xFF292929)
 val BlackishGrey = Color(0xFF171616)
 val Red = Color(0xFFF62020)
 
-internal val LightColorScheme = lightColorScheme(
-    primary = Primary,
-    onPrimary = White,
-    background = LightSurface,
-    onBackground = Primary,
-    secondary = Secondary,
-    onSecondary = Primary,
-    tertiary = Tertiary,
-    onTertiary = Secondary,
-    onError = Red
-)
+internal val LightColorScheme =
+    lightColorScheme(
+        primary = Primary,
+        onPrimary = White,
+        background = LightSurface,
+        onBackground = Primary,
+        secondary = Secondary,
+        onSecondary = Primary,
+        tertiary = Tertiary,
+        onTertiary = Secondary,
+        onError = Red,
+    )
 
-internal val DarkColorScheme = darkColorScheme(
-    primary = Primary,
-    onPrimary = BlackishGrey,
-    background = DarkSurface,
-    onBackground = Primary,
-    secondary = Secondary,
-    onSecondary = Primary,
-    tertiary = Tertiary,
-    onTertiary = Secondary,
-    onError = Red
-)
+internal val DarkColorScheme =
+    darkColorScheme(
+        primary = Primary,
+        onPrimary = BlackishGrey,
+        background = DarkSurface,
+        onBackground = Primary,
+        secondary = Secondary,
+        onSecondary = Primary,
+        tertiary = Tertiary,
+        onTertiary = Secondary,
+        onError = Red,
+    )

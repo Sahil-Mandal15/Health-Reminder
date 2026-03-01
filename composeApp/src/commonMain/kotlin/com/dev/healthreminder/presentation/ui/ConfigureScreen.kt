@@ -12,12 +12,12 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun ConfigureScreen() {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .background(Color.White)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .background(Color.White),
     ) {
-
     }
 }
 

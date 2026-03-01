@@ -39,58 +39,63 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun ReminderCardItems(modifier: Modifier = Modifier) {
     Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(StandardCardHeight),
-        colors = CardColors(
-            containerColor = MaterialTheme.colorScheme.secondary,
-            contentColor = MaterialTheme.colorScheme.onPrimary,
-            disabledContainerColor = MaterialTheme.colorScheme.tertiary,
-            disabledContentColor = MaterialTheme.colorScheme.onTertiary
-        ),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .height(StandardCardHeight),
+        colors =
+            CardColors(
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+                disabledContainerColor = MaterialTheme.colorScheme.tertiary,
+                disabledContentColor = MaterialTheme.colorScheme.onTertiary,
+            ),
         shape = RoundedCornerShape(MediumRound),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = ElevationDip
-        ),
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = ElevationDip,
+            ),
     ) {
         Row(
             modifier = Modifier.fillMaxSize().padding(Padding),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 painter = painterResource(Res.drawable.ic_blink),
                 contentDescription = "Blink icon",
-                modifier = Modifier.size(IconSize)
+                modifier = Modifier.size(IconSize),
             )
             Spacer(modifier = Modifier.width(Gap))
             Column(
                 modifier = Modifier.wrapContentSize(),
-                horizontalAlignment = Alignment.Start
+                horizontalAlignment = Alignment.Start,
             ) {
                 MediumText(
                     text = "Blink Reminder",
-                    color = MaterialTheme.colorScheme.surface
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 SmallText(
                     text = "Active",
                     color = MaterialTheme.colorScheme.surface,
-                    modifier = Modifier.background(
-                        shape = RoundedCornerShape(LargeRound),
-                        color = MaterialTheme.colorScheme.primary
-                    ).padding(horizontal = Padding)
+                    modifier =
+                        Modifier
+                            .background(
+                                shape = RoundedCornerShape(LargeRound),
+                                color = MaterialTheme.colorScheme.primary,
+                            ).padding(horizontal = Padding),
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
             Switch(
                 checked = true,
                 onCheckedChange = {},
-                modifier = Modifier.wrapContentSize()
+                modifier = Modifier.wrapContentSize(),
             )
             Spacer(modifier = Modifier.width(Gap))
             Icon(
                 painter = painterResource(Res.drawable.ic_settings),
                 contentDescription = "Settings",
-                modifier = Modifier.size(IconSizeSmall)
+                modifier = Modifier.size(IconSizeSmall),
             )
         }
     }
