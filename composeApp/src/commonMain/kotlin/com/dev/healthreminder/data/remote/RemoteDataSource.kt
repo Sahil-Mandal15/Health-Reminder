@@ -58,7 +58,10 @@ class RemoteDataSource {
                 uiMetadata =
                     UiMetadataPojo(
                         displayTitle = "This is a posture correction reminder",
-                        description = "This is a posture correction reminder, This is a posture correction reminder, This is a posture correction reminder.",
+                        description =
+                            "This is a posture correction reminder, " +
+                                "This is a posture correction reminder, " +
+                                "This is a posture correction reminder.",
                         ctaText = "Understood",
                     ),
                 defaultIntervalList = defaultIntervalList,
