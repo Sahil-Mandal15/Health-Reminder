@@ -1,4 +1,4 @@
-package com.dev.healthreminder.presentation.states
+package com.dev.healthreminder.presentation.ui.states
 
 sealed class PermissionUiState {
     object Granted : PermissionUiState()
