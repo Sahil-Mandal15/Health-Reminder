@@ -1,10 +1,6 @@
 package com.dev.healthreminder.data.local
 
-import com.dev.healthreminder.data.pojo.UserConfigurationPojo
-
 interface UserConfigurationLocalDataSource {
-    fun getAllReminders(): List<UserConfigurationPojo>
-
     suspend fun insertOrReplace(
         reminderId: Long,
         isActive: Boolean,

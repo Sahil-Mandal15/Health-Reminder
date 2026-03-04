@@ -1,8 +1,9 @@
 package com.dev.healthreminder.data.repository
 
 import com.dev.healthreminder.data.local.UserConfigurationLocalDataSource
-import com.dev.healthreminder.data.mapper.toModel
-import com.dev.healthreminder.domain.model.ReminderModel
+import com.dev.healthreminder.data.mapper.toConfigureItemModel
+import com.dev.healthreminder.data.remote.RemoteDataSource
+import com.dev.healthreminder.domain.model.ConfigureItemModel
 import com.dev.healthreminder.domain.repository.UserConfigurationRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -10,18 +11,19 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class UserConfigurationRepositoryImpl(
-    private val dataSource: UserConfigurationLocalDataSource,
+    private val db: UserConfigurationLocalDataSource,
+    private val remoteDataSource: RemoteDataSource,
 ) : UserConfigurationRepository {
-    override fun getAllReminders(): Flow<List<ReminderModel>> =
+    override fun getAllReminders(): Flow<List<ConfigureItemModel>> =
         flow {
-            emit(dataSource.getAllReminders().map { it.toModel() })
+            emit(remoteDataSource.getUserConfigurationResponse.map { it.toConfigureItemModel() })
         }.flowOn(Dispatchers.Default)
 
     override suspend fun updateReminderState(
         reminderId: Long,
         isActive: Boolean,
     ) {
-        dataSource.updateReminderState(
+        db.updateReminderState(
             reminderId,
             isActive,
         )
@@ -31,13 +33,13 @@ class UserConfigurationRepositoryImpl(
         reminderId: Long,
         interval: Long,
     ) {
-        dataSource.updateReminderSetting(
+        db.updateReminderSetting(
             reminderId,
             interval,
         )
     }
 
     override suspend fun clearReminders() {
-        dataSource.clearReminders()
+        db.clearReminders()
     }
 }
