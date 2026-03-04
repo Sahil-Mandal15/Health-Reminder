@@ -1,6 +1,7 @@
 package com.dev.healthreminder.di
 
 import androidx.work.WorkerParameters
+import com.dev.healthreminder.data.local.DatabaseDriverFactory
 import com.dev.healthreminder.presentation.permission.NotificationPermissionManager
 import com.dev.healthreminder.workers.ReminderTriggerWorker
 import com.dev.healthreminder.workers.ReminderWorker
@@ -12,6 +13,9 @@ actual val platformModule =
     module {
         singleOf(::NotificationPermissionManager)
         singleOf(::ReminderWorker)
+        single {
+            DatabaseDriverFactory(androidContext())
+        }
         factory { (workerParams: WorkerParameters) ->
             ReminderTriggerWorker(androidContext(), workerParams)
         }
