@@ -10,6 +10,6 @@ class ReminderTriggerWorker(
 ) : Worker(context, params) {
     override fun doWork(): Result {
         // TODO: attach Notification Trigger here
-        return Result.Success()
+        return Result.success()
     }
 }
