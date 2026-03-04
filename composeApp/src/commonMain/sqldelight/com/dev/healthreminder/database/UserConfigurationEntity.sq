@@ -1,0 +1,25 @@
+CREATE TABLE UserConfigurationEntity (
+       reminderId INTEGER PRIMARY KEY NOT NULL,
+       isActive INTEGER NOT NULL DEFAULT 1,
+       interval INTEGER NOT NULL DEFAULT -1
+);
+
+insertOrReplace:
+INSERT OR REPLACE INTO UserConfigurationEntity(reminderId, isActive, interval)
+VALUES (?,?,?);
+
+getAllReminders:
+SELECT * FROM UserConfigurationEntity;
+
+updateReminderState:
+UPDATE UserConfigurationEntity
+SET isActive = :isActive
+WHERE reminderId IS :reminderId;
+
+updateReminderSetting:
+UPDATE UserConfigurationEntity
+SET interval = :interval
+WHERE reminderId IS :reminderId;
+
+clearReminders:
+DELETE FROM UserConfigurationEntity;
