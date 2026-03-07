@@ -1,5 +1,6 @@
 package com.dev.healthreminder.di
 
+import com.dev.healthreminder.data.local.DatabaseDriverFactory
 import com.dev.healthreminder.presentation.permission.NotificationPermissionManager
 import com.dev.healthreminder.workers.BackgroundReminderWorker
 import com.dev.healthreminder.workers.ReminderService
@@ -14,5 +15,6 @@ actual val platformModule =
     module {
         single<CoroutineScope> { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
         singleOf(::NotificationPermissionManager)
+        singleOf(::DatabaseDriverFactory)
         singleOf(::BackgroundReminderWorker).bind(ReminderService::class)
     }

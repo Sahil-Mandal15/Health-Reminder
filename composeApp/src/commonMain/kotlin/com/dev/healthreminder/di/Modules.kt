@@ -1,7 +1,10 @@
 package com.dev.healthreminder.di
 
+import com.dev.healthreminder.data.local.DatabaseDriverFactory
+import com.dev.healthreminder.data.local.UserConfigurationLocalDataSource
 import com.dev.healthreminder.data.remote.RemoteDataSource
 import com.dev.healthreminder.data.repository.UserConfigurationRepositoryImpl
+import com.dev.healthreminder.database.HealthReminderDatabase
 import com.dev.healthreminder.domain.repository.UserConfigurationRepository
 import com.dev.healthreminder.presentation.ui.stateHolders.ConfigureViewModel
 import org.koin.compose.viewmodel.dsl.viewModelOf
@@ -16,5 +19,11 @@ val sharedModule =
     module {
         singleOf(::RemoteDataSource)
         singleOf(::UserConfigurationRepositoryImpl) { bind<UserConfigurationRepository>() }
+        singleOf(::UserConfigurationLocalDataSource)
+        single {
+            HealthReminderDatabase(
+                driver = get<DatabaseDriverFactory>().createDriver(),
+            )
+        }
         viewModelOf(::ConfigureViewModel)
     }

@@ -7,7 +7,7 @@ import com.dev.healthreminder.database.HealthReminderDatabase
 import com.dev.healthreminder.utils.LOCAL_DB_NAME
 
 actual class DatabaseDriverFactory {
-    actual suspend fun createDriver(): SqlDriver =
+    actual fun createDriver(): SqlDriver =
         NativeSqliteDriver(
             HealthReminderDatabase.Schema.synchronous(),
             LOCAL_DB_NAME,
