@@ -13,9 +13,7 @@ actual val platformModule =
     module {
         singleOf(::NotificationPermissionManager)
         singleOf(::ReminderWorker)
-        single {
-            DatabaseDriverFactory(androidContext())
-        }
+        singleOf(::DatabaseDriverFactory)
         factory { (workerParams: WorkerParameters) ->
             ReminderTriggerWorker(androidContext(), workerParams)
         }
